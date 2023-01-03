@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DinaApp.Login.LoginView"
+                          FlowDirection="RightToLeft"
+             BackgroundColor="Black"
+             Title="تسجيل الدخول"
+             
+             >
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="CenterAndExpand" BackgroundColor="Navy" Padding="10,10" Margin="5" IsVisible="{Binding isVisible}">
+            <Label Text="تسجيل الدخول" TextColor="White" FontSize="Title" HorizontalTextAlignment="Center" />
+            <Entry Text="{Binding name}" TextColor="White" FontSize="20" Placeholder="إسم المستخدم" PlaceholderColor="Gold" Margin="0,5,0,0" BackgroundColor="Black" />
+            <Entry Text="{Binding password}" TextColor="White" FontSize="20" Placeholder="كلمة المرور" PlaceholderColor="Gold" Margin="0,5,0,0" BackgroundColor="Black" />
+            <Button Command="{Binding btnLogin}" Text="دخول" TextColor="White" BackgroundColor="Blue" FontSize="20" Margin="0,10,0,0" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

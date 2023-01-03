@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DinaApp.Views.SelectBookToAddCategoryView"
+             
+                                                                 FlowDirection="RightToLeft"
+             BackgroundColor="Black"
+             Title="تحديد كتاب"
+             >
+    <ScrollView>
+        <VerticalStackLayout Padding="5,0,5,5">
+
+            <!--<Grid BackgroundColor="#2196F3" HeightRequest="50" Padding="0" Margin="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="40" />
+                </Grid.ColumnDefinitions>
+                <Label Text="تحديد كتاب" TextColor="White" Grid.Column="0" />
+                <Button Command="{Binding btnBack}" TextColor="White" Margin="2" SemanticProperties.Description="رجوع" Padding="1" 
+                                        FontFamily="FAS"
+                                        Text="&#xf30a;" 
+                                        BackgroundColor="#2196F3"
+                                Grid.Column="1"
+                                    />
+            </Grid>-->
+
+            <CollectionView ItemsSource="{ Binding books, Mode=TwoWay}" SelectedItem="{Binding selectedItem}" SelectionMode="Single"
+                            x:Name="cv"
+                            Header=""
+                            >
+                <CollectionView.HeaderTemplate>
+                    <DataTemplate>
+                        <Grid  Padding="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Text="العدد" TextColor="White" FontSize="18" Grid.Column="0" />
+                            <Label Text="مكتمل" TextColor="White" Grid.Column="1" />
+                            <Label Text="متبقي" TextColor="White" Grid.Column="2" />
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.HeaderTemplate>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <Label Text="{Binding Name}" TextColor="White" />
+                            <Grid Padding="2">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Label Text="{Binding Count}" TextColor="White" Grid.Column="0" />
+                                <Label Text="{Binding Finish}" TextColor="White" Grid.Column="1" />
+                                <Label Text="{Binding UnFinish}" TextColor="White" Grid.Column="2" />
+                            </Grid>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <ActivityIndicator IsRunning="{Binding loading}" IsVisible="{Binding loading}" SemanticProperties.Description="جاري تحميل البيانات"></ActivityIndicator>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

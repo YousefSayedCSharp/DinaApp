@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DinaApp.Views.YearsView"
+                                      
+             FlowDirection="RightToLeft"
+             BackgroundColor="Black"
+             Title="الكتب"
+             >
+    <VerticalStackLayout>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="60" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Button Command="{Binding btnNew}" TextColor="White" BackgroundColor="Black" Margin="2" Padding="1"
+                        SemanticProperties.Description="Refresh"
+                        FontSize="Title"
+                    FontFamily="FAS"
+                    TextTransform="Lowercase"
+                        Text="&#xf2f9;"
+                        Grid.Column="0"
+                    />
+                <Switch IsToggled="{Binding isToggled,Mode=TwoWay}" SemanticProperties.Description="{Binding toggledRead}" HorizontalOptions="End" Grid.Column="1" />
+            </Grid>
+            
+            
+            <Button Command="{Binding btnShow}" BackgroundColor="Black" TextColor="White"
+                    SemanticProperties.Description="{Binding txtRead}"
+                    FontFamily="FAS"
+                    TextTransform="Lowercase"
+                        Text="{Binding txtShow}"
+                    />
+
+                <VerticalStackLayout IsVisible="{Binding show}">
+                    <Entry Text="{Binding title}" TextColor="White" Placeholder="إدخال عنوان للعام" PlaceholderColor="Gold" />
+                    <HorizontalStackLayout>
+                        <CheckBox IsChecked="{Binding isShow            }" Color="White" />
+                        <Label Text="إظهار أو إخفاء من هذه الشاشة" TextColor="White" />
+                    </HorizontalStackLayout>
+                    <HorizontalStackLayout HorizontalOptions="Center" Margin="10">
+                        <!--<Button Text="جديد" Command="{Binding btnNew}" TextColor="White" BackgroundColor="Green" />-->
+                        <Button Text="إضافة" Command="{Binding btnAdd}" TextColor="White" BackgroundColor="Green" IsEnabled="{Binding btnAddIsEnabled}" Margin="4" />
+                        <Button Text="تعديل" Command="{Binding btnEdit}" TextColor="White" BackgroundColor="Green" IsEnabled="{Binding btnEditIsEnabled}" Margin="4" />
+                        <Button Text="حذف" Command="{Binding btnDelete}" TextColor="White" BackgroundColor="Red" IsEnabled="{Binding btnDeleteIsEnabled}" Margin="4" />
+                    </HorizontalStackLayout>
+                </VerticalStackLayout>
+
+        <ScrollView>
+            <VerticalStackLayout Padding="5" Margin="5" IsEnabled="{Binding frmEnabled}">
+
+                <CollectionView ItemsSource="{ Binding years, Mode=TwoWay}" SelectedItem="{Binding selectedItem}" SelectionMode="Single"
+                            x:Name="cv"
+                            Header=""
+                            >
+                    <CollectionView.HeaderTemplate>
+                        <DataTemplate>
+                            <Grid Padding="5">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="40" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="60" />
+                                </Grid.ColumnDefinitions>
+                                <Label Text="/" TextColor="White" FontSize="18" Grid.Column="0" />
+                                <Label Text="الإسم" TextColor="White" Grid.Column="1" />
+                                <Label Text="فتح" TextColor="White" Grid.Column="2" />
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.HeaderTemplate>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Padding="5">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="40" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="60" />
+                                </Grid.ColumnDefinitions>
+                                <CheckBox IsChecked="{Binding IsShow}" IsEnabled="False" Grid.Column="0" Color="White" />
+                                <Label Text="{Binding Title}" TextColor="White" Grid.Column="1" VerticalTextAlignment="Center" />
+                                <Button Command="{Binding BindingContext.btnOpen,Source={x:Reference cv}}" CommandParameter="{Binding Id}" TextColor="White" Margin="2" SemanticProperties.Description="فتح" Padding="1" 
+                                        FontFamily="FAS"
+                                        Text="&#xf053;" 
+                                        BackgroundColor="Green"
+                                Grid.Column="2" />
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+                <ActivityIndicator IsRunning="{Binding loading}" IsVisible="{Binding loading}" SemanticProperties.Description="جاري تحميل البيانات"></ActivityIndicator>
+            </VerticalStackLayout>
+    </ScrollView>
+    </VerticalStackLayout>
+</ContentPage>

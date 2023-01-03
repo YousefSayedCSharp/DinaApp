@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DinaApp.Views.AddBooksFinishView"
+                          FlowDirection="RightToLeft"
+             BackgroundColor="Black"
+             Title="إضافة نسخ"
+             >
+    <ContentPage.Content    >
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="10,50,10,10">
+            <Label Text="{Binding lblTitle}" TextColor="White" FontSize="Title" HorizontalTextAlignment="Center" Margin="0,0,0,20" />
+            <Entry Text="{Binding printedcount}" TextColor="White" FontSize=" 20" Placeholder="إدخال عدد النسخ" PlaceholderColor="Gold" Margin="2" Keyboard="Numeric" />
+            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Padding="5">
+                <Button Command="{Binding btnSave}" Text="تم" TextColor="White" BackgroundColor="Green" FontSize="20" Margin="10,2" MinimumWidthRequest="100" />
+                <Button Command="{Binding btnCancel}" Text="إلغاء" TextColor="White" BackgroundColor="Red" FontSize="20" Margin="10,2" MinimumWidthRequest="100" />
+            </StackLayout>
+        </StackLayout>
+
+    </ContentPage.Content>
+</ContentPage>

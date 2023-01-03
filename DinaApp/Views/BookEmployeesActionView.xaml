@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DinaApp.Views.BookEmployeesActionView"
+             
+                                                                                           FlowDirection="RightToLeft"
+             BackgroundColor="Black"
+             Title="{Binding yearName}"
+             >
+    <VerticalStackLayout>
+
+        <!--<Grid BackgroundColor="#2196F3" HeightRequest="50" Padding="0" Margin="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="40" />
+            </Grid.ColumnDefinitions>
+            <Label Text="{Binding yearName}" TextColor="White" Grid.Column="0" />
+            <Button Command="{Binding btnBack}" TextColor="White" Margin="2" SemanticProperties.Description="رجوع" Padding="1" 
+                                        FontFamily="FAS"
+                                        Text="&#xf30a;" 
+                                        BackgroundColor="#2196F3"
+                                Grid.Column="1"
+                                    />
+        </Grid>-->
+
+        <Grid Margin="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="60" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Button Command="{Binding btnNew}" TextColor="White" BackgroundColor="Black" Margin="2" Padding="1"
+                        SemanticProperties.Description="Refresh"
+                        FontSize="Title"
+                    FontFamily="FAS"
+                    TextTransform="Lowercase"
+                        Text="&#xf2f9;"
+                        Grid.Column="0"
+                    />
+        </Grid>
+
+        <ScrollView>
+            <VerticalStackLayout Padding="5,0,5,5" VerticalOptions="StartAndExpand" HorizontalOptions="StartAndExpand">
+
+                <CollectionView x:Name="cv" ItemsSource="{ Binding group, Mode=TwoWay}" IsGrouped="True" SelectedItem="{Binding selectedItem}" SelectionMode="Single">
+                    <CollectionView.GroupHeaderTemplate>
+                        <DataTemplate>
+                            <StackLayout>
+                                <BoxView Color="DarkBlue" HeightRequest="15" />
+                                <Label Text="{Binding EmployeeName}" FontSize="Title" TextColor="White" Margin="10,0" />
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.GroupHeaderTemplate>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="100" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Label Text="{Binding Count}" TextColor="White" FontAttributes="Bold" HorizontalOptions="StartAndExpand"
+                                   Grid.Column="0"
+                                   />
+                                <Label Text="{Binding Date}" TextColor="White" FontAttributes="Bold" HorizontalOptions="StartAndExpand"
+                                   Grid.Column=         "1"
+                                   />
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+                <ActivityIndicator IsRunning="{Binding loading}" IsVisible="{Binding loading}" SemanticProperties.Description="جاري تحميل البيانات"></ActivityIndicator>
+            </VerticalStackLayout>
+        </ScrollView>
+    </VerticalStackLayout>
+</ContentPage>
